@@ -1,9 +1,11 @@
-Sprint Planning Meeting 1
+Sprint Planning Meeting 1 
+Date: 20/05/2022
+Everyone was present.
 
 Meeting goals:
 1.	Reading and understanding the problem statement.
 2.	Discussing the main structure of the Project.
-3.	Analyzing the Functional and the non-functional requirements and the different scenarios
+3.	Analyzing the Functional and the non-functional requirements and the different scenarios.
 4.	Dividing the weekly task “The modeling tasks” into small tasks and assigning everyone a role. 
 5.	Fixing a deadline, by which the tasks should be done in order to connect them and review them.
 
@@ -12,6 +14,6 @@ The tasks were divided as following:
 -	Rayen, Amine, and Mehdi work on the object model.
 -	Yosr, with help from Mehdi and Rayen works on the communication model.
 
-Before the next meeting: 
--	The models should be done and reviewed by every member
+TODOs: 
+-	The models should be done and reviewed by every member.
 -	Every one should read more about spring boot and JavaFX. 
