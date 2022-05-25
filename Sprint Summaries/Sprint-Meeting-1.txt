@@ -1,6 +1,6 @@
 Sprint Planning Meeting 1 
 Date: 20/05/2022
-Everyone was present.
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen.
 
 Meeting goals:
 1.	Reading and understanding the problem statement.
