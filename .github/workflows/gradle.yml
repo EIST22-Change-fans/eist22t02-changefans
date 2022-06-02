@@ -20,6 +20,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    env:
+      UPSTREAM: ssh://git@bitbucket.ase.in.tum.de:7999/eist22t02/eist22t02-changefans.git
 
     steps:
     - uses: actions/checkout@v3
@@ -29,3 +32,23 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - run: ./gradlew clean test
+    
+    #CODE FOR PUSH TO BITBUCKET TAKEN FROM github.com/babyygemperor/github-action-push-to-another-repository.git
+    
+    - name: Set up remote
+      run: git remote add upstream ${{env.UPSTREAM}}
+
+    - name: Setup SSH Agent
+      uses: webfactory/ssh-agent@v0.5.4
+      with:
+        ssh-private-key: |
+          ${{ secrets.PRIVATE_KEY }}
+
+    - name: Copy ssh public_key
+      run: echo "${{SECRETS.PUBLIC_KEY}}" > ~/.ssh/id_rsa.pub
+
+    - name: Pull upstream
+      run: git fetch --unshallow
+
+    - name: Git push to other repo
+      run: git push upstream
