@@ -1,10 +1,12 @@
 plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.12'
     id 'org.springframework.boot' version '2.6.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
 }
 
-group = 'hello.world'
+group = 'de.changefans'
 version = '1.0.0'
 sourceCompatibility = '17'
 compileJava.options.encoding = 'UTF-8'
@@ -14,29 +16,48 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    serverImplementation.extendsFrom(implementation)
+    clientImplementation.extendsFrom(implementation)
+}
+
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    serverImplementation 'org.springframework.boot:spring-boot-starter-web'
+
+    clientImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
+
+javafx {
+    version = '17.0.2'
+    modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
+    configuration = 'clientImplementation'
 }
 
 sourceSets {
-    main {
+    common {
         java {
-            srcDir 'src/main/java'
-        }
-        resources {
-            srcDir 'src/main/resources'
+            srcDir 'src/common/java'
         }
     }
-    test {
+    server {
         java {
-            srcDir 'src/test/java'
+            srcDir 'src/server/java'
         }
         resources {
-            'src/test/resources'
+            srcDir 'src/server/resources'
         }
+        compileClasspath += common.output
+        runtimeClasspath += common.output
+    }
+    client {
+        java {
+            srcDir 'src/client/java'
+        }
+        resources {
+            srcDir 'src/client/resources'
+        }
+        compileClasspath += common.output
+        runtimeClasspath += common.output
     }
 }
 
@@ -44,7 +65,3 @@ processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-test {
-    defaultCharacterEncoding = 'UTF-8'
-    useJUnitPlatform()
-}
