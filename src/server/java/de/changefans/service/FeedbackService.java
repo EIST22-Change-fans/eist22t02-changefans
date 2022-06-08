@@ -3,7 +3,14 @@ import de.changefans.model.Feedback;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
 import java.util.*;
+=======
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+>>>>>>> 47e77bd (first draft)
 
 @Service
 public class FeedbackService {
@@ -54,4 +61,8 @@ public class FeedbackService {
         }
         return "";
     }
-}
+
+    public List<Feedback> getAllFeedbacks() {
+        return Collections.unmodifiableList(this.feedbacks);
+    }
+
