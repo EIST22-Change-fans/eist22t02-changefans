@@ -23,7 +23,6 @@ configurations {
 
 dependencies {
     serverImplementation 'org.springframework.boot:spring-boot-starter-web'
-
     clientImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
@@ -37,6 +36,8 @@ sourceSets {
         java {
             srcDir 'src/common/java'
         }
+        compileClasspath += common.output
+        runtimeClasspath += common.output
     }
     server {
         java {
