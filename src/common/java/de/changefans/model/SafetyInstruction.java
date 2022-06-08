@@ -14,6 +14,11 @@ public class SafetyInstruction {
 
     public boolean isDetailed() {
         return isDetailed;
+    private Image image;
+
+    public SafetyInstruction(String type, Image image) {
+        this.image = image;
+        detailed = type.equals("detailed");
     }
 
     public Image getImage() {
