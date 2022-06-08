@@ -30,7 +30,6 @@ dependencies {
 javafx {
     version = '17.0.2'
     modules = [ 'javafx.base', 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
-    configuration = 'clientImplementation'
 }
 
 sourceSets {
@@ -63,5 +62,10 @@ sourceSets {
 
 processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+test {
+    defaultCharacterEncoding = 'UTF-8'
+    useJUnitPlatform()
 }
 
