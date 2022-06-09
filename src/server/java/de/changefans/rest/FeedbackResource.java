@@ -5,7 +5,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -24,6 +26,12 @@ public class FeedbackResource {
 
     @PostMapping("feedbacks")
     public ResponseEntity<Feedback> createFeedback(@RequestBody Feedback feedback) {
-        return ResponseEntity.ok(feedbackService.saveFeedback(feedback));
+        Optional<Feedback> feedback1 = feedbackService.checkExistingFeedback(feedback);
+        if (feedback1.isEmpty()) {
+            return ResponseEntity.ok(feedbackService.saveFeedback(feedback));
+        }
+        else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
