@@ -50,5 +50,4 @@ public class FeedbackController {
                     feedbacksConsumer.accept(feedbacks);
                 });
     }
-
 }
