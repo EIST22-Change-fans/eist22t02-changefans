@@ -36,5 +36,20 @@ public class FeedbackController {
                 });
     }
 
+    public void getAllFeedbacks(Consumer<List<Feedback>> feedbacksConsumer) {
+        webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("feedbacks")
+                        .build())
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Feedback>>() {})
+                .onErrorStop()
+                .subscribe(newFeedbacks -> {
+                    feedbacks.clear();
+                    feedbacks.addAll(newFeedbacks);
+                    feedbacksConsumer.accept(feedbacks);
+                });
+    }
+
 
 }
