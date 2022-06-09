@@ -8,6 +8,30 @@ public class Feedback {
     private int serviceScore;
     private int comfortScore;
     private String comment;
+    private String reward;
+
+    /*
+
+    private Passenger passenger;
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
+
+
+     */
+
+    public String getReward() {
+        return reward;
+    }
+
+    public void setReward(String reward) {
+        this.reward = reward;
+    }
 
     public Feedback() {
     }
