@@ -64,6 +64,10 @@ processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
+processClientResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 test {
     defaultCharacterEncoding = 'UTF-8'
     useJUnitPlatform()
