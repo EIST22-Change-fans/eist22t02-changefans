@@ -2,24 +2,30 @@ package de.changefans.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class Controller {
 
     @FXML
+    private void initialize() {
+        ToggleGroup group = new ToggleGroup();
+        chknot.setToggleGroup(group);
+        chkokey.setToggleGroup(group);
+        chkyes.setToggleGroup(group);
+    }
+
+    @FXML
     private Button btnsubmit;
 
     @FXML
-    private CheckBox chknot;
+    private RadioButton chknot;
 
     @FXML
-    private CheckBox chkokey;
+    private RadioButton chkokey;
 
     @FXML
-    private CheckBox chkyes;
+    private RadioButton chkyes;
 
     @FXML
     private TextArea taSummary;

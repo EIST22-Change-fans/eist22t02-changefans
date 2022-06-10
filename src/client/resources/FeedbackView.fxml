@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
@@ -14,6 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import javafx.scene.control.RadioButton?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0"
             prefWidth="484.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="de.changefans.view.Controller">
@@ -25,19 +24,19 @@
             <Font name="Gabriola" size="45.0"/>
          </font>
       </Label>
-      <TextField layoutX="29.0" layoutY="107.0" prefHeight="27.0" prefWidth="351.0"
-                 text="What do you think about our service ? ...">
+      <Label layoutX="29.0" layoutY="107.0" prefHeight="27.0" prefWidth="351.0"
+             text="What do you think about our service ? ...">
          <font>
             <Font name="Franklin Gothic Medium Italic" size="14.0"/>
          </font>
-      </TextField>
+      </Label>
       <Button fx:id="btnsubmit" layoutX="29.0" layoutY="415.0" mnemonicParsing="false" onAction="#submitClicked"
               text="Submit"/>
-      <CheckBox fx:id="chknot" layoutX="22.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="127.0" text="Not Satisfied :("/>
-      <CheckBox fx:id="chkokey" layoutX="182.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="136.0" text="okey with it " textFill="#c30b0b"/>
-      <CheckBox fx:id="chkyes" layoutX="334.0" layoutY="169.0" mnemonicParsing="false" text="Satisfied">
+      <RadioButton fx:id="chknot" layoutX="22.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0"
+                   prefWidth="127.0" text="Not Satisfied :("/>
+      <RadioButton fx:id="chkokey" layoutX="182.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0"
+                   prefWidth="136.0" text="okay with it " textFill="#c30b0b"/>
+      <RadioButton fx:id="chkyes" layoutX="334.0" layoutY="169.0" mnemonicParsing="false" text="Satisfied">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -54,7 +53,7 @@
                </stops>
             </LinearGradient>
          </textFill>
-      </CheckBox>
+      </RadioButton>
       <TextArea fx:id="taSummary" layoutX="24.0" layoutY="281.0" prefHeight="117.0" prefWidth="389.0"
                 AnchorPane.bottomAnchor="88.66666666666669" AnchorPane.leftAnchor="24.0"
                 AnchorPane.rightAnchor="70.66666666666669" AnchorPane.topAnchor="281.0">
@@ -65,7 +64,7 @@
             <InnerShadow/>
          </effect>
       </TextArea>
-      <TextField layoutX="29.0" layoutY="250.0" prefHeight="25.0" prefWidth="361.0"
-                 text="Do you have any thoughts you would like to share ? "/>
+      <Label layoutX="29.0" layoutY="250.0" prefHeight="25.0" prefWidth="361.0"
+             text="Do you have any thoughts you would like to share ? "/>
    </children>
 </AnchorPane>
