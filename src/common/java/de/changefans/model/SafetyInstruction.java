@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class SafetyInstruction {
 
-<<<<<<< HEAD
     private boolean isDetailed;
     private Image image;
 
