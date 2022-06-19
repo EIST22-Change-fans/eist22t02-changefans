@@ -17,6 +17,7 @@ repositories {
 }
 
 configurations {
+    commonImplementation.extendsFrom(implementation)
     serverImplementation.extendsFrom(implementation)
     clientImplementation.extendsFrom(implementation)
 }
@@ -24,6 +25,7 @@ configurations {
 dependencies {
     serverImplementation 'org.springframework.boot:spring-boot-starter-web'
     clientImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+    commonImplementation 'org.openjfx:javafx-base'
 }
 
 javafx {
@@ -36,8 +38,6 @@ sourceSets {
         java {
             srcDir 'src/common/java'
         }
-        compileClasspath += common.output
-        runtimeClasspath += common.output
     }
     server {
         java {
@@ -66,6 +66,10 @@ processResources {
 }
 
 processClientResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+processServerResources {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
