@@ -25,7 +25,11 @@ configurations {
 dependencies {
     serverImplementation 'org.springframework.boot:spring-boot-starter-web'
     clientImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+<<<<<<< HEAD
     commonImplementation 
+=======
+    commonImplementation 'org.openjfx:javafx-base'
+>>>>>>> 6a554f7 (updated build.gradle)
 }
 
 javafx {
