@@ -2,7 +2,10 @@ package de.changefans.model;
 
 import javafx.scene.image.Image;
 
+import java.awt.*;
+
 public class SafetyInstruction {
+
 
     private boolean detailed;
     private Image image;
@@ -19,4 +22,6 @@ public class SafetyInstruction {
     public Image getImage() {
         return image;
     }
+
+
 }

@@ -33,4 +33,6 @@ public class SafetyInstructionController {
         assert imageBytes != null;
         imageConsumer.accept(new SafetyInstruction(type, new Image(new ByteArrayInputStream(imageBytes))));
     }
+
+
 }
