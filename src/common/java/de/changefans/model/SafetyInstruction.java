@@ -2,8 +2,11 @@ package de.changefans.model;
 
 import javafx.scene.image.Image;
 
+import java.awt.*;
+
 public class SafetyInstruction {
 
+<<<<<<< HEAD
     private boolean isDetailed;
     private Image image;
 
@@ -14,14 +17,10 @@ public class SafetyInstruction {
 
     public boolean isDetailed() {
         return isDetailed;
-    private Image image;
-
-    public SafetyInstruction(String type, Image image) {
-        this.image = image;
-        detailed = type.equals("detailed");
-    }
 
     public Image getImage() {
         return image;
     }
+
+
 }

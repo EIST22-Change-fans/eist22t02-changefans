@@ -34,4 +34,6 @@ public class SafetyInstructionController {
         imageConsumer.accept(new SafetyInstruction(isDetailed, new Image(new ByteArrayInputStream(imageBytes))));
 
     }
+
+
 }
