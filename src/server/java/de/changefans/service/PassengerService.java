@@ -1,6 +1,5 @@
 package de.changefans.service;
 
-import de.changefans.model.Feedback;
 import de.changefans.model.Passenger;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,10 @@ public class PassengerService {
     public Passenger savePassenger(Passenger passenger) {
         passengers.add(passenger);
         return passenger;
+    }
+
+    public Optional<Passenger> getPassenger(UUID passengerId) {
+        return passengers.stream().filter(p -> p.getId().equals(passengerId)).findAny();
     }
 
     public void deletePassenger(UUID passengerId) {

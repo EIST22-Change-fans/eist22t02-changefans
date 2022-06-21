@@ -13,6 +13,8 @@ public class Flight {
     private Date endDate;
     private Place departurePlace;
     private Place arrivalPlace;
+    private String departureAirport; //ICAO
+    private String arrivalAirport; //ICAO
     private String gate;
     private int terminal;
     private String airline;
@@ -80,6 +82,22 @@ public class Flight {
 
     public void setArrivalPlace(Place arrivalPlace) {
         this.arrivalPlace = arrivalPlace;
+    }
+
+    public String getDepartureAirport() {
+        return departureAirport;
+    }
+
+    public void setDepartureAirport(String departureAirport) {
+        this.departureAirport = departureAirport;
+    }
+
+    public String getArrivalAirport() {
+        return arrivalAirport;
+    }
+
+    public void setArrivalAirport(String arrivalAirport) {
+        this.arrivalAirport = arrivalAirport;
     }
 
     public String getGate() {

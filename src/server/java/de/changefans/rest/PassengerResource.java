@@ -21,12 +21,21 @@ public class PassengerResource {
     }
 
     @GetMapping("passengers")
-    public ResponseEntity<List<Passenger>> getAllFeedbacks() {
+    public ResponseEntity<List<Passenger>> getAllPassengers() {
         return ResponseEntity.ok(passengerService.getAllPassengers());
     }
 
+    @GetMapping("passengers/{passengerId}")
+    public ResponseEntity<Passenger> getPassenger(@PathVariable("passengerId") UUID passengerId) {
+        Optional<Passenger> passenger = passengerService.getPassenger(passengerId);
+        if (passenger.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(passenger.get());
+    }
+
     @PostMapping("passengers")
-    public ResponseEntity<Passenger> createFeedback(@RequestBody Passenger passenger) {
+    public ResponseEntity<Passenger> createPassenger(@RequestBody Passenger passenger) {
         Optional<Passenger> passenger1 = passengerService.checkExistingPassenger(passenger);
         if (passenger1.isEmpty()) {
             return ResponseEntity.ok(passengerService.savePassenger(passenger));
@@ -36,7 +45,8 @@ public class PassengerResource {
     }
 
     @PutMapping("passengers/{passengerId}")
-    public ResponseEntity<Passenger> updatePassenger(@RequestBody Passenger updatedPassenger, @PathVariable("passengerId") UUID passengerId) {
+    public ResponseEntity<Passenger> updatePassenger(@RequestBody Passenger updatedPassenger,
+                                                     @PathVariable("passengerId") UUID passengerId) {
         if (!updatedPassenger.getId().equals(passengerId)) {
             return ResponseEntity.badRequest().build();
         }
@@ -44,7 +54,7 @@ public class PassengerResource {
     }
 
     @DeleteMapping("passengers/{passengerId}")
-    public ResponseEntity<Void> deletePerson(@PathVariable("passengerId") UUID passengerId) {
+    public ResponseEntity<Void> deletePassenger(@PathVariable("passengerId") UUID passengerId) {
         passengerService.deletePassenger(passengerId);
         return ResponseEntity.noContent().build();
     }
