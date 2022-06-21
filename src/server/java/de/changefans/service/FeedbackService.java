@@ -46,11 +46,11 @@ public class FeedbackService {
             for (int i = 0; i<10; i++) {
                 code.append((char) random.nextInt(256)); //generate random code
             }
-            //feedback.getPassenger().addCouponCode(code.toString()); //add coupon code to passenger's couponsList
+            feedback.getPassenger().addCouponCode(code.toString()); //add coupon code to passenger's couponsList
 
             String destination = "";
-            //destination = feedback.getPassenger().getFlightList().stream().filter(x -> x.getID() == feedback.getFlightID()).toList().get(0).getArrivalPlace().getName();
-            feedback.setReward("You have received a coupon for a free meal at the " + destination + "airport!\n You can find the code in your Coupons' List" );
+            destination = feedback.getPassenger().getFlightList().stream().filter(x -> x.getId().equals(feedback.getFlightID())).toList().get(0).getArrivalPlace().getName();
+            feedback.setReward("You have received a coupon for a free meal at the " + destination + "airport!\n You can find the code in your Coupons' List");
         }
         return "";
     }
