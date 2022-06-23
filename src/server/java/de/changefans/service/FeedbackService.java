@@ -32,7 +32,7 @@ public class FeedbackService {
         return Collections.unmodifiableList(this.feedbacks);
     }
 
-    private String reward(Feedback feedback){
+    public String reward(Feedback feedback){
         Random random= new Random();
 
         String comment = feedback.getComment();
