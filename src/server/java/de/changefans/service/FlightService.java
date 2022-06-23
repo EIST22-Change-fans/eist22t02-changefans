@@ -12,7 +12,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.*;
 
 
@@ -27,16 +26,20 @@ public class FlightService {
         String strDate = dateFormat.format(date);
 
         //TODO filter?
-        final String uri = "https://app.goflightlabs.com/flights?access_key=" + FlIGHT_API_KEY;
+        final String uri = "https://app.goflightlabs.com/flights?access_key=" + FlIGHT_API_KEY + "&dep_iata=" + departureICAO + "&arr_iata=" + arrivalICAO + "&arr_scheduled_time_dep=" + strDate;
 
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
-        result = "{\n" +
+       result = "{\n" +
                 "                    \"data\":" + result + "}";
         JSONObject obj = new JSONObject(result);
+        if (obj.toString().contains("no flights found")) {
+            return null;
+        }
+
         JSONArray arr = obj.getJSONArray("data");
         List<Flight> flights = new ArrayList<>();
-        //TODO extract more data from the flight json
+
         for (int i = 0; i < arr.length(); i++) {
             JSONObject fl = arr.getJSONObject(i).getJSONObject("flight");
             int flightNumber = Integer.parseInt(fl.getString("number"));
@@ -51,8 +54,20 @@ public class FlightService {
             String arrName = arrv.getString("iata");
             Place departurePlace = new Place(depName);
             Place arrivalPlace = new Place(arrName);
+            String gate = dep.getString("gate");
+            int terminal = dep.getInt("terminal");
+
+            JSONObject al = arr.getJSONObject(i).getJSONObject("airline");
+            String airline = al.getString("name");
+
 
             Flight flight = new Flight(flightNumber, startDate, endDate, departurePlace, arrivalPlace);
+            flight.setDepartureAirport(departureICAO);
+            flight.setArrivalAirport(arrivalICAO);
+            flight.setGate(gate);
+            flight.setTerminal(terminal);
+            flight.setAirline(airline);
+
             flights.add(flight);
 
         }
@@ -60,15 +75,15 @@ public class FlightService {
         return flights;
     }
 
-    //TODO use for testing
+   /* //TODO use for testing
     public static void main(String[] args) throws ParseException {
         FlightService flightService = new FlightService();
-        List<Flight> flights = flightService.getFlights(new SimpleDateFormat("yyyy-MM-dd").parse("2022-06-25"), "EDDF", "LFPG");
-        System.out.println("");
+        List<Flight> flights = flightService.getFlights(new SimpleDateFormat("yyyy-MM-dd").parse("2022-06-24"), "DEL", "IST");
+        System.out.println((flights == null )? null: Arrays.toString(flights.toArray())); */
     }
 
 
-}
+
 
 
 
