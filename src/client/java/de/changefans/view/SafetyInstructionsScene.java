@@ -79,7 +79,7 @@ public class SafetyInstructionsScene extends Scene {
         cancelButton.setOnAction(event -> popup.hide());
 
         ImageView imageView = new ImageView();
-        safetyInstructionController.getSafetyInstruction("detailed", this::setSafetyInstruction);
+        //safetyInstructionController.getSafetyInstruction(detailed, this::setSafetyInstruction);
         imageView.setImage(safetyInstruction.getImage());
         imageView.setX(10);
         imageView.setY(10);
