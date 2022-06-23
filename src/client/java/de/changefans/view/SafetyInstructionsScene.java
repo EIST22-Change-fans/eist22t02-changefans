@@ -80,7 +80,7 @@ public class SafetyInstructionsScene extends Scene {
 
         ImageView imageView = new ImageView();
         //safetyInstructionController.getSafetyInstruction(detailed, this::setSafetyInstruction);
-        imageView.setImage(safetyInstruction.getImage());
+        //imageView.setImage(safetyInstruction.getImage());
         imageView.setX(10);
         imageView.setY(10);
         imageView.setFitWidth(575);
