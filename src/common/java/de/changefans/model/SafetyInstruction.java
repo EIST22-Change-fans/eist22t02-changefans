@@ -15,6 +15,7 @@ public class SafetyInstruction {
 
     public boolean isDetailed() {
         return isDetailed;
+    }
 
     public Image getImage() {
         return image;

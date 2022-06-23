@@ -4,19 +4,8 @@ import de.changefans.service.FeedbackService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
-import java.util.List;
-
-=======
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Optional;
->>>>>>> f2f83d5 (added method reward in feedbackService and ensured that the user can't add multiple feedbacks to same flight)
 
 @RestController
 @RequestMapping(consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
