@@ -27,10 +27,6 @@ public class Feedback {
 
      */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9bf3ff82936b251352490a5d2e9c2d7d1ea5410a
     public String getReward() {
         return reward;
     }
@@ -97,8 +93,6 @@ public class Feedback {
     public void setComment(String comment) {
         this.comment = comment;
     }
-<<<<<<< HEAD
-=======
 
     public void reward(){
         Random random= new Random();
@@ -121,5 +115,4 @@ public class Feedback {
             this.setReward("You have received a coupon for a free meal at the " + destination + "airport!\n You can find the code in your Coupons' List" );
         }
     }
->>>>>>> 9bf3ff82936b251352490a5d2e9c2d7d1ea5410a
 }
