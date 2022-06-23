@@ -6,53 +6,40 @@ import de.changefans.model.Place;
 import org.springframework.stereotype.Service;
 
 import org.json.*;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import org.springframework.web.client.RestTemplate;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.*;
 
 
 @Service
 public class FlightService {
 
+    private final String FlIGHT_API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMjAwNmY3YWM2ODkyMGY5NmNmOGIxMzI0NmM5Mjg1ZTg1MDNhOGNkYzAzZmI1NzA4M2I5YWMxODYzYWMyNjE3MWY1NGE2MTNlNDI5YjhjODEiLCJpYXQiOjE2NTU5MzU1MTcsIm5iZiI6MTY1NTkzNTUxNywiZXhwIjoxNjg3NDcxNTE3LCJzdWIiOiI2ODc0Iiwic2NvcGVzIjpbXX0.KSE_CrVi-H5dT8uoRs85L8Iyt2BcPXtQPBIX7yWe829fQipEwk81PFED_Wa651P5vlKrOqCfYJsE4RhizDympA";
 
-    public List<Flight> getFlights(Date date, String departureICAO, String arrivalICAO)  {
-
-
-        HttpClient httpClient = HttpClient.newHttpClient();
+    public List<Flight> getFlights(Date date, String departureICAO, String arrivalICAO) {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(date);
 
-        HttpRequest getRequest;
-        try {
-            String FlIGHT_API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMjAwNmY3YWM2ODkyMGY5NmNmOGIxMzI0NmM5Mjg1ZTg1MDNhOGNkYzAzZmI1NzA4M2I5YWMxODYzYWMyNjE3MWY1NGE2MTNlNDI5YjhjODEiLCJpYXQiOjE2NTU5MzU1MTcsIm5iZiI6MTY1NTkzNTUxNywiZXhwIjoxNjg3NDcxNTE3LCJzdWIiOiI2ODc0Iiwic2NvcGVzIjpbXX0.KSE_CrVi-H5dT8uoRs85L8Iyt2BcPXtQPBIX7yWe829fQipEwk81PFED_Wa651P5vlKrOqCfYJsE4RhizDympA";
-            getRequest = HttpRequest.newBuilder().uri(new URI("https://app.goflightlabs.com/flights?access_key=" + FlIGHT_API_KEY +"&arr_scheduled_time_dep=" + strDate +"&dep_icao=" + departureICAO + "&arr_icao=" + arrivalICAO)).build();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("URISyntax error!");
-        }
-        HttpResponse<String> getResponse;
-        try {
-            getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RuntimeException("error sending/receiving request/response!");
-        } catch (InterruptedException e) {
-            throw new RuntimeException("sending/receiving was interruped!");
-        }
-        JSONObject obj = new JSONObject(getResponse.body());
+        //TODO filter?
+        final String uri = "https://app.goflightlabs.com/flights?access_key=" + FlIGHT_API_KEY;
+
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri, String.class);
+        result = "{\n" +
+                "                    \"data\":" + result + "}";
+        JSONObject obj = new JSONObject(result);
         JSONArray arr = obj.getJSONArray("data");
         List<Flight> flights = new ArrayList<>();
+        //TODO extract more data from the flight json
         for (int i = 0; i < arr.length(); i++) {
             JSONObject fl = arr.getJSONObject(i).getJSONObject("flight");
-            int flightNumber = Integer.parseInt(fl.getString("flight_number"));
+            int flightNumber = Integer.parseInt(fl.getString("number"));
             JSONObject dep = arr.getJSONObject(i).getJSONObject("departure");
             Instant instant1 = Instant.parse(dep.getString("scheduled"));
             Date startDate = Date.from(instant1);
@@ -65,18 +52,23 @@ public class FlightService {
             Place departurePlace = new Place(depName);
             Place arrivalPlace = new Place(arrName);
 
-            Flight flight = new Flight(flightNumber,startDate,endDate,departurePlace,arrivalPlace);
+            Flight flight = new Flight(flightNumber, startDate, endDate, departurePlace, arrivalPlace);
             flights.add(flight);
 
         }
 
         return flights;
+    }
 
-
+    //TODO use for testing
+    public static void main(String[] args) throws ParseException {
+        FlightService flightService = new FlightService();
+        List<Flight> flights = flightService.getFlights(new SimpleDateFormat("yyyy-MM-dd").parse("2022-06-25"), "EDDF", "LFPG");
+        System.out.println("");
     }
 
 
-    }
+}
 
 
 
