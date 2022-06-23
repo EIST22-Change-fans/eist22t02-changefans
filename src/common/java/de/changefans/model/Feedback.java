@@ -27,7 +27,6 @@ public class Feedback {
 
      */
 
-
     public String getReward() {
         return reward;
     }
