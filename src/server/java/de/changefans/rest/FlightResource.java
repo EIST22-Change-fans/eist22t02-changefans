@@ -2,6 +2,7 @@ package de.changefans.rest;
 
 import de.changefans.model.Flight;
 import de.changefans.service.FlightService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +28,7 @@ public class FlightResource {
     @GetMapping("flights")
     public ResponseEntity<List<Flight>> getFlights(@RequestBody Date date,
                                                    @RequestBody String departureICAO,
-                                                   @RequestBody String arrivalICAO) {
+                                                   @RequestBody String arrivalICAO)  {
         return ResponseEntity.ok(flightService.getFlights(date, departureICAO, arrivalICAO));
     }
 }

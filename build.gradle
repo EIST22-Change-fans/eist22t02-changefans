@@ -20,12 +20,15 @@ configurations {
     commonImplementation.extendsFrom(implementation)
     serverImplementation.extendsFrom(implementation)
     clientImplementation.extendsFrom(implementation)
+
 }
 
 dependencies {
+    implementation 'org.json:json:20220320'
     serverImplementation 'org.springframework.boot:spring-boot-starter-web'
     clientImplementation 'org.springframework.boot:spring-boot-starter-webflux'
     commonImplementation 'org.openjfx:javafx-base'
+
 }
 
 javafx {

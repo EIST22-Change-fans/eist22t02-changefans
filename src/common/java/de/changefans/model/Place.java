@@ -6,7 +6,9 @@ public class Place {
     // private Weather weather;
     // private ? location;
 
-
+    public Place(String name) {
+        this.name = name;
+    }
     public String getName() {
         return name;
     }
