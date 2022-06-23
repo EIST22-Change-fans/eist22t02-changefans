@@ -14,7 +14,7 @@ public class HomeScene extends Scene{
         var feedbackButton = new Button("Give Feedback");
         var saftyButton = new Button("Watch flight safety instructions");
         saftyButton.setOnAction(event -> {
-            application.showSaftyInstructionScene();
+            application.showSafetyInstructionsScene();
         });
         feedbackButton.setOnAction(event -> {
             try {
