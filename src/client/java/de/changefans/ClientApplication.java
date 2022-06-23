@@ -1,20 +1,40 @@
 package de.changefans;
 
+import de.changefans.controller.FeedbackController;
+import de.changefans.controller.SafetyInstructionController;
+import de.changefans.view.FeedbackScene;
+import de.changefans.view.HomeScene;
+import de.changefans.view.SafetyInstructionsScene;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ClientApplication extends Application {
+    private final FeedbackController feedbackController=new FeedbackController();
+    private final SafetyInstructionController safetyInstructionController=new SafetyInstructionController();
+    private Stage stage;
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FeedbackView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        primaryStage.setTitle("Feedback");
-        primaryStage.setScene(scene);
+        this.stage = primaryStage;
+        primaryStage.setScene(new HomeScene(this));
         primaryStage.show();
+    }
+
+    public void showHomeScene() {
+        stage.setScene(new HomeScene(this));
+    }
+
+    public void showSafetyInstructionsScene() {
+        stage.setScene(new SafetyInstructionsScene(safetyInstructionController, this));
+    }
+
+    public void showFeedbackScene() throws IOException {
+
+        stage.setScene(new FeedbackScene(feedbackController, this));
+    }
+    public Stage getStage() {
+        return stage;
     }
 }
 
