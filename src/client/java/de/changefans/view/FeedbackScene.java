@@ -41,6 +41,7 @@ public class FeedbackScene extends Scene {
         var vBox = new VBox(10, scrollPane, createButtonBox());
         feedbackController.getAllFeedbacks(this::setFeedbacks);
         this.setRoot(vBox);
+        String reward;
     }
 
     public void setFeedbacks(List<Feedback> feedbacks){
@@ -97,21 +98,23 @@ public class FeedbackScene extends Scene {
         idTextField.setPromptText("Enter flightID");
         idTextField.setText(feedback == null ? "" : String.valueOf(feedback.getFlightID()));
 
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-
-        var cateringTextField = new Spinner<>(spinnerValueFactory);
+        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
+        var cateringTextField = new Spinner<>(spinnerValueFactory1);
         cateringTextField.setPromptText("Rate catering");
         cateringTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getCateringScore());
 
-        var entertainmentTextField = new Spinner<>(spinnerValueFactory);
+        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
+        var entertainmentTextField = new Spinner<>(spinnerValueFactory2);
         entertainmentTextField.setPromptText("Rate entertainment");
         entertainmentTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getEntertainmentScore());
 
-        var serviceTextField = new Spinner<>(spinnerValueFactory);
+        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
+        var serviceTextField = new Spinner<>(spinnerValueFactory3);
         serviceTextField.setPromptText("Rate service");
         serviceTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getServiceScore());
 
-        var comfortTextField = new Spinner<>(spinnerValueFactory);
+        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
+        var comfortTextField = new Spinner<>(spinnerValueFactory4);
         comfortTextField.setPromptText("Rate comfort");
         comfortTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getComfortScore());
 
@@ -163,7 +166,7 @@ public class FeedbackScene extends Scene {
         cancelButton.setOnAction(event -> popup.hide());
 
         Text text= new Text();
-        text.setText(feedback.getReward());
+        text.setText("You received a new reward!");
 
         var hBox = new HBox(10, cancelButton);
         hBox.setAlignment(Pos.CENTER);
