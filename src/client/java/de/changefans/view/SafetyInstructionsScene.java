@@ -3,6 +3,7 @@ package de.changefans.view;
 import de.changefans.ClientApplication;
 import de.changefans.controller.SafetyInstructionController;
 import de.changefans.model.Feedback;
+import de.changefans.model.SafetyInstruction;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,16 +21,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class SaftyInstructionScene extends Scene {
+public class SafetyInstructionsScene extends Scene {
     private final SafetyInstructionController safetyInstructionController;
     private final ClientApplication clientApplication;
+    private SafetyInstruction safetyInstruction;
     private final FlowPane flowPane;
-    private boolean viewed=false;
+    private boolean viewed = false;
 
-    public SaftyInstructionScene (SafetyInstructionController safetyInstructionController,ClientApplication clientApplication){
+    public SafetyInstructionsScene(SafetyInstructionController safetyInstructionController, ClientApplication clientApplication) {
         super(new VBox(), 640, 500);
-        this.safetyInstructionController=safetyInstructionController;
-        this.clientApplication=clientApplication;
+        this.safetyInstructionController = safetyInstructionController;
+        this.clientApplication = clientApplication;
 
         flowPane = new FlowPane(10, 10);
         var scrollPane = new ScrollPane(flowPane);
@@ -75,21 +77,14 @@ public class SaftyInstructionScene extends Scene {
 
         var cancelButton = new Button("Cancel");
         cancelButton.setOnAction(event -> popup.hide());
-        InputStream stream;
 
-        if(detailed){
-            stream = new FileInputStream("C:\\Users\\User\\EIST\\eist22t02-changefans\\src\\server\\resources\\SafetyInstructions\\detailedSafetyInstructions.jpg");
-        }else {
-            stream = new FileInputStream("C:\\Users\\User\\EIST\\eist22t02-changefans\\src\\server\\resources\\SafetyInstructions\\simpleSafetyInstructions.jpg");
-        }
-        Image image = new Image(stream);
         ImageView imageView = new ImageView();
-        imageView.setImage(image);
+        safetyInstructionController.getSafetyInstruction("detailed", this::setSafetyInstruction);
+        imageView.setImage(safetyInstruction.getImage());
         imageView.setX(10);
         imageView.setY(10);
         imageView.setFitWidth(575);
         imageView.setPreserveRatio(true);
-
 
 
         var hBox = new HBox(10, cancelButton);
@@ -107,4 +102,11 @@ public class SaftyInstructionScene extends Scene {
         popup.centerOnScreen();
     }
 
+    public SafetyInstruction getSafetyInstruction() {
+        return safetyInstruction;
+    }
+
+    public void setSafetyInstruction(SafetyInstruction safetyInstruction) {
+        this.safetyInstruction = safetyInstruction;
+    }
 }

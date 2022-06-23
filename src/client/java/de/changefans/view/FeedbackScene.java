@@ -91,27 +91,29 @@ public class FeedbackScene extends Scene {
     }
 
     private void showPopup(Feedback feedback) {
-        boolean commented=false;
+        boolean commented = false;
         var popup = new Popup();
         var idTextField = new TextField();
         idTextField.setPromptText("Enter flightID");
         idTextField.setText(feedback == null ? "" : String.valueOf(feedback.getFlightID()));
 
-        var cateringTextField = new TextField();
+        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
+
+        var cateringTextField = new Spinner<>(spinnerValueFactory);
         cateringTextField.setPromptText("Rate catering");
-        cateringTextField.setText(feedback == null ? "" : String.valueOf(feedback.getCateringScore()));
+        cateringTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getCateringScore());
 
-        var entertainmentTextField = new TextField();
+        var entertainmentTextField = new Spinner<>(spinnerValueFactory);
         entertainmentTextField.setPromptText("Rate entertainment");
-        entertainmentTextField.setText(feedback == null ? "" : String.valueOf(feedback.getEntertainmentScore()));
+        entertainmentTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getEntertainmentScore());
 
-        var serviceTextField = new TextField();
+        var serviceTextField = new Spinner<>(spinnerValueFactory);
         serviceTextField.setPromptText("Rate service");
-        serviceTextField.setText(feedback == null ? "" : String.valueOf(feedback.getServiceScore()));
+        serviceTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getServiceScore());
 
-        var comfortTextField = new TextField();
+        var comfortTextField = new Spinner<>(spinnerValueFactory);
         comfortTextField.setPromptText("Rate comfort");
-        comfortTextField.setText(feedback == null ? "" : String.valueOf(feedback.getComfortScore()));
+        comfortTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getComfortScore());
 
 
         var commentTextArea = new TextArea();
@@ -122,10 +124,10 @@ public class FeedbackScene extends Scene {
         addButton.setOnAction(event -> {
             var newFeedback = feedback != null ? feedback : new Feedback();
             newFeedback.setFlightID(Integer.parseInt(idTextField.getText()));
-            newFeedback.setCateringScore(Integer.parseInt(cateringTextField.getText()));
-            newFeedback.setComfortScore(Integer.parseInt(comfortTextField.getText()));
-            newFeedback.setEntertainmentScore(Integer.parseInt(entertainmentTextField.getText()));
-            newFeedback.setServiceScore(Integer.parseInt(serviceTextField.getText()));
+            newFeedback.setCateringScore(cateringTextField.getValue());
+            newFeedback.setComfortScore(comfortTextField.getValue());
+            newFeedback.setEntertainmentScore(entertainmentTextField.getValue());
+            newFeedback.setServiceScore(serviceTextField.getValue());
             newFeedback.setComment(commentTextArea.getText());
             if (feedback == null) {
                 feedbackController.addFeedback(newFeedback, this::setFeedbacks);
@@ -161,29 +163,7 @@ public class FeedbackScene extends Scene {
         cancelButton.setOnAction(event -> popup.hide());
 
         Text text= new Text();
-        text.setText(reward(feedback));
-
-        //InputStream stream;
-        /*
-
-        if(detailed){
-            stream = new FileInputStream("C:\\Users\\User\\EIST\\eist22t02-changefans\\src\\server\\resources\\SafetyInstructions\\detailedSafetyInstructions.jpg");
-        }else {
-            stream = new FileInputStream("C:\\Users\\User\\EIST\\eist22t02-changefans\\src\\server\\resources\\SafetyInstructions\\simpleSafetyInstructions.jpg");
-        }
-
-
-        Image image = new Image(stream);
-        ImageView imageView = new ImageView();
-        imageView.setImage(image);
-        imageView.setX(10);
-        imageView.setY(10);
-        imageView.setFitWidth(575);
-        imageView.setPreserveRatio(true);
-
-         */
-
-
+        text.setText(feedback.getReward());
 
         var hBox = new HBox(10, cancelButton);
         hBox.setAlignment(Pos.CENTER);
@@ -199,59 +179,4 @@ public class FeedbackScene extends Scene {
         popup.show(clientApplication.getStage());
         popup.centerOnScreen();
     }
-
-    /*
-    @FXML
-    private void initialize() {
-        ToggleGroup group = new ToggleGroup();
-        chknot.setToggleGroup(group);
-        chkokey.setToggleGroup(group);
-        chkyes.setToggleGroup(group);
-    }
-
-    @FXML
-    private Button btnsubmit;
-
-    @FXML
-    private RadioButton chknot;
-
-    @FXML
-    private RadioButton chkokey;
-
-    @FXML
-    private RadioButton chkyes;
-
-    @FXML
-    private TextArea taSummary;
-
-    @FXML
-    void submitClicked(ActionEvent event) {
-
-    }
-
-     */
-
-
-    public String reward(Feedback feedback){
-        Random random= new Random();
-
-        String comment = feedback.getComment();
-        if (!(comment == null || comment.equals(""))){
-            int n = random.nextInt(10, 10+10 * comment.length());
-            return "You have received " + n + " miles!";
-            //feedback.getPassenger.updateMiles(n);
-        }
-        else {
-            StringBuilder code = new StringBuilder(10);
-            for (int i = 0; i<10; i++) {
-                code.append((char) random.nextInt(256)); //generate random code
-            }
-            //feedback.getPassenger().addCouponCode(code.toString()); //add coupon code to passenger's couponsList
-
-            String destination = "";
-            //destination = feedback.getPassenger().getFlightList().stream().filter(x -> x.getID() == feedback.getFlightID()).toList().get(0).getArrivalPlace().getName();
-            return "You have received a coupon for a free meal at the " + destination + "airport!\n You can find the code in your Coupons' List";
-        }
-    }
-
 }
