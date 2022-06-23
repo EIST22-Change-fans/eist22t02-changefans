@@ -6,17 +6,17 @@ import java.awt.*;
 
 public class SafetyInstruction {
 
+    private boolean isDetailed;
 
-    private boolean detailed;
     private Image image;
 
-    public SafetyInstruction(String type, Image image) {
+    public SafetyInstruction(Boolean isDetailed, Image image) {
+        this.isDetailed = isDetailed;
         this.image = image;
-        detailed = type.equals("detailed");
     }
 
     public boolean isDetailed() {
-        return detailed;
+        return isDetailed;
     }
 
     public Image getImage() {

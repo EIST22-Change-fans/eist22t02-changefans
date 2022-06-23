@@ -15,7 +15,7 @@ import java.nio.file.Files;
 
 public class SafetyInstructionResource {
     @GetMapping("safetyInstruction")
-    public ResponseEntity<byte[]> getSafetyInstruction(@RequestParam("type") boolean detailed) {
+    public ResponseEntity<byte[]> getSafetyInstruction(@RequestParam("isDetailed") boolean detailed) {
         String imagePath;
         if (detailed) {
             imagePath = "/resources/SafetyInstructions/detailedSafetyInstructions.jpg";

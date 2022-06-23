@@ -22,16 +22,16 @@ public class SafetyInstructionController {
                 .build();
     }
 
-    public void getSafetyInstruction(String type, Consumer<SafetyInstruction> imageConsumer) {
+    public void getSafetyInstruction(Boolean isDetailed, Consumer<SafetyInstruction> imageConsumer) {
         byte[] imageBytes = webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("safetyInstruction")
-                        .queryParam("type", type).build())
+                        .queryParam("isDetailed", isDetailed).build())
                 .retrieve()
                 .bodyToMono(byte[].class)
                 .onErrorStop()
                 .block();
         assert imageBytes != null;
-        imageConsumer.accept(new SafetyInstruction(type, new Image(new ByteArrayInputStream(imageBytes))));
+        imageConsumer.accept(new SafetyInstruction(isDetailed, new Image(new ByteArrayInputStream(imageBytes))));
     }
 
 
