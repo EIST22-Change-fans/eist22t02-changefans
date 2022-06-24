@@ -15,7 +15,7 @@
 <?import javafx.scene.control.RadioButton?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0"
             prefWidth="484.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="de.changefans.view.Controller">
+            fx:controller="de.changefans.view.FeedbackScene">
    <children>
       <ScrollBar layoutX="463.0" layoutY="16.0" opacity="0.95" orientation="VERTICAL" prefHeight="467.0"
                  prefWidth="15.0"/>

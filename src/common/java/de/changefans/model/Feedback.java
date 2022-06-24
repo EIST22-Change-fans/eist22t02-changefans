@@ -1,5 +1,7 @@
 package de.changefans.model;
 
+import java.util.Random;
+
 public class Feedback {
     private  int flightID;
     private int flightScore;
@@ -25,6 +27,10 @@ public class Feedback {
 
      */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9bf3ff82936b251352490a5d2e9c2d7d1ea5410a
     public String getReward() {
         return reward;
     }
@@ -91,4 +97,29 @@ public class Feedback {
     public void setComment(String comment) {
         this.comment = comment;
     }
+<<<<<<< HEAD
+=======
+
+    public void reward(){
+        Random random= new Random();
+
+        String comment = this.getComment();
+        if (!(comment == null || comment.equals(""))){
+            int n = random.nextInt(10, 10 * comment.length());
+            this.setReward("You have received " + n + " miles!");
+            //feedback.getPassenger.updateMiles(n);
+        }
+        else {
+            StringBuilder code = new StringBuilder(10);
+            for (int i = 0; i<10; i++) {
+                code.append((char) random.nextInt(256)); //generate random code
+            }
+            //feedback.getPassenger().addCouponCode(code.toString()); //add coupon code to passenger's couponsList
+
+            String destination = "";
+            //destination = feedback.getPassenger().getFlightList().stream().filter(x -> x.getID() == feedback.getFlightID()).toList().get(0).getArrivalPlace().getName();
+            this.setReward("You have received a coupon for a free meal at the " + destination + "airport!\n You can find the code in your Coupons' List" );
+        }
+    }
+>>>>>>> 9bf3ff82936b251352490a5d2e9c2d7d1ea5410a
 }
