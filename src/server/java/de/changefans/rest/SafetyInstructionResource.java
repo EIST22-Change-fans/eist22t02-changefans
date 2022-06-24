@@ -18,9 +18,9 @@ public class SafetyInstructionResource {
     public ResponseEntity<byte[]> getSafetyInstruction(@RequestParam("isDetailed") boolean detailed) {
         String imagePath;
         if (detailed) {
-            imagePath = "/resources/SafetyInstructions/detailedSafetyInstructions.jpg";
+            imagePath = "src/server/resources/SafetyInstructions/detailedSafetyInstructions.jpg";
         } else {
-            imagePath = "/resources/SafetyInstructions/simpleSafetyInstructions.jpg";
+            imagePath = "src/server/resources/SafetyInstructions/simpleSafetyInstructions.jpg";
         }
         File imageFile = new File(imagePath);
         try {
