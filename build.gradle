@@ -77,4 +77,3 @@ test {
     defaultCharacterEncoding = 'UTF-8'
     useJUnitPlatform()
 }
-
