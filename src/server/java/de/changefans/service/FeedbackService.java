@@ -3,18 +3,8 @@ import de.changefans.model.Feedback;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.*;
-=======
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
->>>>>>> 47e77bd (first draft)
-=======
-import java.util.*;
->>>>>>> f2f83d5 (added method reward in feedbackService and ensured that the user can't add multiple feedbacks to same flight)
+
 
 @Service
 public class FeedbackService {

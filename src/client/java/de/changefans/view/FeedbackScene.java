@@ -41,7 +41,6 @@ public class FeedbackScene extends Scene {
         var vBox = new VBox(10, scrollPane, createButtonBox());
         feedbackController.getAllFeedbacks(this::setFeedbacks);
         this.setRoot(vBox);
-        String reward;
     }
 
     public void setFeedbacks(List<Feedback> feedbacks){
@@ -104,12 +103,6 @@ public class FeedbackScene extends Scene {
         var idTextField = new TextField();
         idTextField.setPromptText("Enter flightID");
         idTextField.setText(feedback == null ? "" : String.valueOf(feedback.getFlightID()));
-
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
 
         SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
         var cateringTextField = new Spinner<>(spinnerValueFactory1);
@@ -179,7 +172,7 @@ public class FeedbackScene extends Scene {
         cancelButton.setOnAction(event -> popup.hide());
 
         Text text= new Text();
-        text.setText("You received a new reward!");
+        text.setText(feedback.getReward());
 
         var hBox = new HBox(10, cancelButton);
         hBox.setAlignment(Pos.CENTER);
