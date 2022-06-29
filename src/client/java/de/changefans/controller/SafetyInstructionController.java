@@ -2,6 +2,7 @@ package de.changefans.controller;
 
 import de.changefans.model.SafetyInstruction;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -35,4 +36,9 @@ public class SafetyInstructionController {
     }
 
 
+    public void handleSimpleSafetyInstructionClicked(MouseEvent mouseEvent) {
+    }
+
+    public void handledDtailedSafetyInstructionClicked(MouseEvent mouseEvent) {
+    }
 }
