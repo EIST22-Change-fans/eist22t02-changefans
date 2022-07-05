@@ -25,12 +25,11 @@ public class FlightService {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(date);
 
-        //TODO filter?
-        final String uri = "https://app.goflightlabs.com/flights?access_key=" + FlIGHT_API_KEY + "&dep_iata=" + departureICAO + "&arr_iata=" + arrivalICAO + "&arr_scheduled_time_dep=" + strDate;
+        final String uri = "https://app.goflightlabs.com/flights?access_key=" + FlIGHT_API_KEY + "&dep_icao=" + departureICAO + "&arr_icao=" + arrivalICAO + "&arr_scheduled_time_dep=" + strDate;
 
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class);
-       result = "{\n" +
+        result = "{\n" +
                 "                    \"data\":" + result + "}";
         JSONObject obj = new JSONObject(result);
         if (obj.toString().contains("no flights found")) {
@@ -50,10 +49,22 @@ public class FlightService {
             Instant instant2 = Instant.parse(arrv.getString("scheduled"));
             Date endDate = Date.from(instant2);
 
-            String depName = dep.getString("iata");
-            String arrName = arrv.getString("iata");
+            String depName = dep.getString("icao");
+            String arrName = arrv.getString("icao");
             Place departurePlace = new Place(depName);
             Place arrivalPlace = new Place(arrName);
+
+            String departureResult = restTemplate.getForObject("http://iatageo.com/getICAOLatLng/" + depName, String.class);
+            String arrivalResult = restTemplate.getForObject("http://iatageo.com/getICAOLatLng/" + arrName, String.class);
+
+            JSONObject departureJSON = new JSONObject(departureResult);
+            departurePlace.setLatitude(departureJSON.getDouble("latitude"));
+            departurePlace.setLongitude(departureJSON.getDouble("longitude"));
+
+            JSONObject arrivalJSON = new JSONObject(arrivalResult);
+            departurePlace.setLatitude(arrivalJSON.getDouble("latitude"));
+            departurePlace.setLongitude(arrivalJSON.getDouble("longitude"));
+
             String gate = dep.getString("gate");
             int terminal = dep.getInt("terminal");
 
@@ -75,12 +86,14 @@ public class FlightService {
         return flights;
     }
 
-   /* //TODO use for testing
+
+    //TODO use for testing
     public static void main(String[] args) throws ParseException {
         FlightService flightService = new FlightService();
-        List<Flight> flights = flightService.getFlights(new SimpleDateFormat("yyyy-MM-dd").parse("2022-06-24"), "DEL", "IST");
-        System.out.println((flights == null )? null: Arrays.toString(flights.toArray())); */
+        List<Flight> flights = flightService.getFlights(new SimpleDateFormat("yyyy-MM-dd").parse("2022-06-4"), "EDDF", "LFPG");
+        System.out.println((flights == null) ? null : Arrays.toString(flights.toArray()));
     }
+}
 
 
 
