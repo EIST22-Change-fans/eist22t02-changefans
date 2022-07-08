@@ -56,12 +56,32 @@ public class FeedbackControllerNew {
     private TextArea taSummary;
 
     @FXML
+    void handleImageOkeyServiceClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleImageUnhappyComfortClicked(MouseEvent event) {
+
+    }
+
+    @FXML
     void handleSubmitClicked(MouseEvent event) {
 
     }
 
     @FXML
+    void handleUnhappyServiceClicked(MouseEvent event) {
+
+    }
+
+    @FXML
     void handleimageOkeyCatering(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleimageOkeyComfortClicked(MouseEvent event) {
 
     }
 
@@ -76,7 +96,17 @@ public class FeedbackControllerNew {
     }
 
     @FXML
+    void handleimagePerfectComfortClicked(MouseEvent event) {
+
+    }
+
+    @FXML
     void handleimagePerfectEntertainment(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleimagePerfectServiceClicked(MouseEvent event) {
 
     }
 
@@ -87,6 +117,21 @@ public class FeedbackControllerNew {
 
     @FXML
     void handleimageUnhappyentertainment(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imageOkeyFlightClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imagePerfectFlightClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void imageUnhappyFlightClicked(MouseEvent event) {
 
     }
 

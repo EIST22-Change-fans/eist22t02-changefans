@@ -1,10 +1,16 @@
 package de.changefans.controller;
 
+import de.changefans.ClientApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+
 public class MainPageController {
+    private ClientApplication clientApplication;
+   // public MainPageController(ClientApplication clientApplication) {
+      //  this.clientApplication= clientApplication;
+ //   }
 
     @FXML
     private Button FlightInformation;

@@ -58,7 +58,7 @@
       </VBox>
       <ImageView fitHeight="445.0" fitWidth="432.0" layoutX="219.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Downloads/95-950034_flying-plane-vector-png-transparent-png.png" />
+            <Image url="@src/client/resources/airplaneMainPagePicture.png" />
          </image>
       </ImageView>
       <Label layoutX="257.0" layoutY="14.0" prefHeight="70.0" prefWidth="355.0" text="Change For Fans " textFill="#703cae">

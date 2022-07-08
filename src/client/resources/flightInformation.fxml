@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="de.changefans.view.FlightInformation"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.view.FlightInformation">
+   <children>
+      <ImageView fitHeight="71.0" fitWidth="68.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@FlightInfoLogo.jpg" />
+         </image>
+      </ImageView>
+      <TableView layoutX="7.0" layoutY="74.0" prefHeight="200.0" prefWidth="244.0">
+        <columns>
+          <TableColumn prefWidth="124.0" text="Departure Airport" />
+          <TableColumn prefWidth="118.66665649414062" text="Destination airport" />
+        </columns>
+      </TableView>
+      <TableView layoutX="247.0" layoutY="74.0" prefHeight="200.0" prefWidth="191.0">
+        <columns>
+          <TableColumn prefWidth="102.666748046875" text="Departure Time " />
+          <TableColumn prefWidth="96.0" text="Arrival Time " />
+        </columns>
+      </TableView>
+      <Label text="Label" />
+      <Label layoutX="144.0" layoutY="13.0" text="Flight Information" textFill="#c5b1b1">
+         <font>
+            <Font name="Georgia Pro Light" size="37.0" />
+         </font>
+      </Label>
+      <TableView layoutX="436.0" layoutY="74.0" prefHeight="200.0" prefWidth="165.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="airline" />
+          <TableColumn prefWidth="75.0" text="Flight Nr" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
