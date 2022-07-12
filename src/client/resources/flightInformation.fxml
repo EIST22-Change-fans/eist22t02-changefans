@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.view.FlightInformation">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.controller.requestServiceControllerNew">
    <children>
       <ImageView fitHeight="71.0" fitWidth="68.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@FlightInfoLogo.jpg" />
+            <Image url="@de/changefans/controller/FlightInfoLogo.jpg" />
          </image>
       </ImageView>
       <TableView layoutX="7.0" layoutY="74.0" prefHeight="200.0" prefWidth="244.0">

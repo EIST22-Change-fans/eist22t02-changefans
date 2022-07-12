@@ -34,7 +34,7 @@
             </Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="173.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Downloads/safetycard-e1373923887220.png" />
+                  <Image url="@de/changefans/controller/safety.jpg" />
                </image>
             </ImageView>
          </children></AnchorPane>

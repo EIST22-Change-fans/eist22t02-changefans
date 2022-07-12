@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="445.0" prefWidth="652.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.controller.MainPageController">
+<AnchorPane prefHeight="426.0" prefWidth="655.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.controller.MainPageController">
    <children>
       <VBox prefHeight="445.0" prefWidth="219.0" style="-fx-background-color: #3F2863;">
          <children>
@@ -56,11 +55,10 @@
             </Button>
          </children>
       </VBox>
-      <ImageView fitHeight="445.0" fitWidth="432.0" layoutX="219.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="MyImageView" fitHeight="192.0" fitWidth="226.0" layoutX="303.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@src/client/resources/airplaneMainPagePicture.png" />
-         </image>
-      </ImageView>
+            <Image url="@de/changefans/controller/airplaneMainPagePicture.png" />
+         </image></ImageView>
       <Label layoutX="257.0" layoutY="14.0" prefHeight="70.0" prefWidth="355.0" text="Change For Fans " textFill="#703cae">
          <font>
             <Font name="Forte" size="45.0" />
@@ -68,10 +66,9 @@
       </Label>
       <ImageView fitHeight="154.0" fitWidth="338.0" layoutX="331.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../Downloads/AdobeStock_313597954-scaled.jpeg" />
+            <Image url="@de/changefans/controller/FlightInfoLogo.jpg" />
          </image>
 
       </ImageView>
    </children>
 </AnchorPane>
-

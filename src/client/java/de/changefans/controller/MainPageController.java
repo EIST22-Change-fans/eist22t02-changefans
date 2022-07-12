@@ -1,16 +1,12 @@
 package de.changefans.controller;
 
-import de.changefans.ClientApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-
 public class MainPageController {
-    private ClientApplication clientApplication;
-   // public MainPageController(ClientApplication clientApplication) {
-      //  this.clientApplication= clientApplication;
- //   }
 
     @FXML
     private Button FlightInformation;
@@ -20,6 +16,14 @@ public class MainPageController {
 
     @FXML
     private Button MainPage1;
+
+    @FXML
+    private ImageView MyImageView;
+    Image myImage = new Image(getClass().getResourceAsStream("airplaneMainPicture.png"));
+
+    public void displayImage(){
+        MyImageView.setImage(myImage);
+    }
 
     @FXML
     private Button RequestService;
