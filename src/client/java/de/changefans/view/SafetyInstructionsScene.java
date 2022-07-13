@@ -79,8 +79,8 @@ public class SafetyInstructionsScene extends Scene {
         cancelButton.setOnAction(event -> popup.hide());
 
         ImageView imageView = new ImageView();
-        //safetyInstructionController.getSafetyInstruction(detailed, this::setSafetyInstruction);
-        //imageView.setImage(safetyInstruction.getImage());
+        safetyInstructionController.getSafetyInstruction(detailed, this::setSafetyInstruction);
+        imageView.setImage(safetyInstruction.getImage());
         imageView.setX(10);
         imageView.setY(10);
         imageView.setFitWidth(575);
@@ -90,7 +90,7 @@ public class SafetyInstructionsScene extends Scene {
         var hBox = new HBox(10, cancelButton);
         hBox.setAlignment(Pos.CENTER);
 
-        var vBox = new VBox(10, imageView,hBox);
+        var vBox = new VBox(10, imageView, hBox);
         vBox.setAlignment(Pos.TOP_CENTER);
         vBox.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         vBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
