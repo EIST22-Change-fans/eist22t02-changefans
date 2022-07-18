@@ -19,7 +19,7 @@ public class MainPageController {
 
     @FXML
     private ImageView MyImageView;
-    Image myImage = new Image(getClass().getResourceAsStream("airplaneMainPicture.png"));
+    Image myImage = new Image(getClass().getResourceAsStream("/airplaneMainPagePicture.png"));
 
     public void displayImage(){
         MyImageView.setImage(myImage);
