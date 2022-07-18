@@ -2,11 +2,14 @@ package de.changefans.view;
 
 import de.changefans.ClientApplication;
 import de.changefans.controller.FeedbackController;
+import de.changefans.controller.FeedbackControllerNew;
 import de.changefans.model.Feedback;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -19,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Random;
@@ -27,6 +31,7 @@ public class FeedbackScene extends Scene {
     private final FeedbackController feedbackController;
     private final ClientApplication clientApplication;
     private final FlowPane flowPane;
+    Popup popup;
 
     public FeedbackScene(FeedbackController feedbackController, ClientApplication clientApplication) {
         super(new VBox(), 640, 500);
@@ -60,7 +65,13 @@ public class FeedbackScene extends Scene {
 
         var deleteButton = new Button("Show feedback");
         deleteButton.setTextFill(Color.ORANGE);
-        deleteButton.setOnAction(event -> showPopup(feedback));
+        deleteButton.setOnAction(event -> {
+            try {
+                showPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
 
         var titleBox = new HBox(id, spacer,deleteButton);
@@ -79,7 +90,13 @@ public class FeedbackScene extends Scene {
         backButton.setOnAction(event -> clientApplication.showHomeScene());
 
         var addButton = new Button("Add Feedback");
-        addButton.setOnAction(event -> showPopup(null));
+        addButton.setOnAction(event -> {
+            try {
+                showPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         var refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> feedbackController.getAllFeedbacks(this::setFeedbacks));
@@ -90,81 +107,24 @@ public class FeedbackScene extends Scene {
         return buttonBox;
     }
 
-    private void showPopup(Feedback feedback) {
-        boolean commented = false;
-        var popup = new Popup();
-        Label fid = new Label("Enter flightID");
-        Label cat = new Label("Rate catering");
-        Label enter = new Label("Rate entertainment");
-        Label ser = new Label("Rate service");
-        Label comf = new Label("Rate comfort");
-        Label comm= new Label("Add Comment");
+    private void showPopup() throws IOException {
+        popup = new Popup();
+        Feedback feedback=new Feedback();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FeedbackViewNew.fxml"));
+        popup.getContent().add((Parent)loader.load());
+        ((FeedbackControllerNew)loader.getController()).setFeedbackController(feedbackController);
+        ((FeedbackControllerNew)loader.getController()).setFeedback(feedback);
+        ((FeedbackControllerNew)loader.getController()).setFeedbackScene(this);
 
-        var idTextField = new TextField();
-        idTextField.setPromptText("Enter flightID");
-        idTextField.setText(feedback == null ? "" : String.valueOf(feedback.getFlightID()));
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var cateringTextField = new Spinner<>(spinnerValueFactory1);
-        cateringTextField.setPromptText("Rate catering");
-        cateringTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getCateringScore());
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var entertainmentTextField = new Spinner<>(spinnerValueFactory2);
-        entertainmentTextField.setPromptText("Rate entertainment");
-        entertainmentTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getEntertainmentScore());
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var serviceTextField = new Spinner<>(spinnerValueFactory3);
-        serviceTextField.setPromptText("Rate service");
-        serviceTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getServiceScore());
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var comfortTextField = new Spinner<>(spinnerValueFactory4);
-        comfortTextField.setPromptText("Rate comfort");
-        comfortTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getComfortScore());
-
-        var commentTextArea = new TextArea();
-        commentTextArea.setPromptText("Comment");
-        commentTextArea.setText(feedback == null ? "" : feedback.getComment());
-
-        var addButton = new Button("Save");
-        addButton.setOnAction(event -> {
-            var newFeedback = feedback != null ? feedback : new Feedback();
-            newFeedback.setFlightID(Integer.parseInt(idTextField.getText()));
-            newFeedback.setCateringScore(cateringTextField.getValue());
-            newFeedback.setComfortScore(comfortTextField.getValue());
-            newFeedback.setEntertainmentScore(entertainmentTextField.getValue());
-            newFeedback.setServiceScore(serviceTextField.getValue());
-            newFeedback.setComment(commentTextArea.getText());
-            if (feedback == null) {
-                feedbackController.addFeedback(newFeedback, this::setFeedbacks);
-            }
-            newFeedback.reward();
-            showPopup2(newFeedback);
-            popup.hide();
-        });
-
-        var cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(event -> popup.hide());
-
-
-        var hBox = new HBox(10, addButton, cancelButton);
-        hBox.setAlignment(Pos.CENTER);
-
-        var vBox = new VBox(10,fid, idTextField,ser,serviceTextField,cat,cateringTextField,comf,comfortTextField,enter,entertainmentTextField,comm,commentTextArea, hBox);
-        vBox.setAlignment(Pos.TOP_CENTER);
-        vBox.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-        vBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-        vBox.setPrefWidth(200);
-        vBox.setPrefHeight(200);
-        vBox.setPadding(new Insets(5));
-        popup.getContent().add(vBox);
         popup.show(clientApplication.getStage());
         popup.centerOnScreen();
     }
 
-    private void showPopup2(Feedback feedback){
+    public void hidePopup(){
+        popup.hide();
+    }
+
+    public void showPopup2(Feedback feedback){
         var popup = new Popup();
 
 

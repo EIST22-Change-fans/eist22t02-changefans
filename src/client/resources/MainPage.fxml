@@ -37,7 +37,7 @@
                   <Font name="Cambria" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="MainPage" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#MainPageClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Main Page" textFill="#d4b4b4">
+            <Button fx:id="MainPage" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#FeedbackClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Add Feedback" textFill="#d4b4b4">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -45,7 +45,7 @@
                   <Font name="Cambria" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="MainPage1" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#MainPageClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Q&amp;A" textFill="#d4b4b4">
+            <Button fx:id="MainPage1" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#FeedbackClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Q&amp;A" textFill="#d4b4b4">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -57,7 +57,7 @@
       </VBox>
       <ImageView fx:id="MyImageView" fitHeight="192.0" fitWidth="226.0" layoutX="303.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@airplaneMainPagePicture.png"/>
+            <Image url="@airplaneMainPagePicture.png" />
          </image></ImageView>
       <Label layoutX="257.0" layoutY="14.0" prefHeight="70.0" prefWidth="355.0" text="Change For Fans " textFill="#703cae">
          <font>
@@ -66,7 +66,7 @@
       </Label>
       <ImageView fitHeight="154.0" fitWidth="338.0" layoutX="331.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@FlightInfoLogo.jpg"/>
+            <Image url="@FlightInfoLogo.jpg" />
          </image>
 
       </ImageView>

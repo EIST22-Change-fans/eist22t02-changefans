@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
-
 @Service
 public class FeedbackService {
     private final List<Feedback> feedbacks;
@@ -31,5 +30,6 @@ public class FeedbackService {
     public List<Feedback> getAllFeedbacks() {
         return Collections.unmodifiableList(this.feedbacks);
     }
-}
 
+
+}

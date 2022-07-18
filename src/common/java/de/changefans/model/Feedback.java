@@ -1,9 +1,10 @@
 package de.changefans.model;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class Feedback {
-    private  int flightID;
+    private UUID flightID;
     private int flightScore;
     private int cateringScore;
     private int entertainmentScore;
@@ -11,9 +12,6 @@ public class Feedback {
     private int comfortScore;
     private String comment;
     private String reward;
-
-    /*
-
     private Passenger passenger;
 
     public Passenger getPassenger() {
@@ -23,9 +21,6 @@ public class Feedback {
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
-
-
-     */
 
     public String getReward() {
         return reward;
@@ -38,11 +33,11 @@ public class Feedback {
     public Feedback() {
     }
 
-    public int getFlightID() {
+    public UUID getFlightID() {
         return flightID;
     }
 
-    public void setFlightID(int flightID) {
+    public void setFlightID(UUID flightID) {
         this.flightID = flightID;
     }
 

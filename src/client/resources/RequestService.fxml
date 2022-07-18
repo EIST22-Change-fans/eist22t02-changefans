@@ -16,7 +16,7 @@
       </Label>
       <ImageView fx:id="requestServicePicture" fitHeight="366.0" fitWidth="795.0" layoutX="34.0" layoutY="36.0" opacity="0.32" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@servicePhoto.jpg"/>
+            <Image url="@servicePhoto.jpg" />
          </image>
       </ImageView>
       <Button fx:id="BackToMainButton" layoutX="520.0" layoutY="362.0" mnemonicParsing="false" onMouseClicked="#BackToMainButtonClicked" prefHeight="25.0" prefWidth="66.0" text="Back to main" textFill="#791212">
