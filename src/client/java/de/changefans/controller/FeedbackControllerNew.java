@@ -169,4 +169,13 @@ public class FeedbackControllerNew {
         feedback.setFlightScore(1);
     }
 
+    @FXML
+    private TextArea textAreaFlightID;
+
+    @FXML
+    void handleFlightIDClicked(MouseEvent event) {
+
+    }
+
+
 }

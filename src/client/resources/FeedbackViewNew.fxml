@@ -133,6 +133,12 @@
                   <Font name="HP Simplified Hans Regular" size="20.0" />
                </font>
             </Label>
+            <Label layoutX="471.0" layoutY="52.0" text="Flight ID">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="textAreaFlightID" layoutX="464.0" layoutY="71.0" onMouseClicked="#handleFlightIDClicked" prefHeight="13.0" prefWidth="69.0" />
          </children></AnchorPane>
   </content>
 </ScrollPane>
