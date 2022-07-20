@@ -19,6 +19,7 @@ public class ClientApplication extends Application {
     private Stage stage;
     private Scene main;
     private Scene reqSer;
+    private Scene flightInfo;
 
 
     @Override
@@ -31,6 +32,7 @@ public class ClientApplication extends Application {
         primaryStage.setScene(main);
         primaryStage.show();
         setReqser();
+        setFlightinfo();
     }
 
     private void setReqser() throws IOException {
@@ -38,6 +40,13 @@ public class ClientApplication extends Application {
          Pane pp=serloader.load();
         ((requestServiceControllerNew)serloader.getController()).setClientApplication(this);
         reqSer=new Scene(pp);
+    }
+
+    private void setFlightinfo() throws IOException {
+        FXMLLoader infoloader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("flightInformation.fxml")));
+        Pane pp=infoloader.load();
+        ((flightInformationController)infoloader.getController()).setClientApplication(this);
+        flightInfo=new Scene(pp);
     }
 
 
@@ -57,6 +66,10 @@ public class ClientApplication extends Application {
 
     public void showRequestService() throws IOException {
         stage.setScene(reqSer);
+    }
+
+    public void showFlightInformation() throws IOException {
+        stage.setScene(flightInfo);
     }
     public Stage getStage() {
         return stage;

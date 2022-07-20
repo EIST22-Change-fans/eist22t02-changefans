@@ -35,13 +35,6 @@ public class MainPageController {
 
     @FXML
     private ImageView MyImageView;
-    //Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/airplaneMainPagePicture.png")));
-
-/*
-    public void displayImage(){
-        MyImageView.setImage(myImage);
-    }
-*/
 
 
     @FXML
@@ -51,8 +44,8 @@ public class MainPageController {
     private Button SafetyInstrucionPart;
 
     @FXML
-    void FlightInformationClicked(MouseEvent event) {
-
+    void FlightInformationClicked(MouseEvent event) throws IOException {
+        clientApplication.showFlightInformation();
     }
 
     @FXML
