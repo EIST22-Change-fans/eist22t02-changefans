@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.controller.requestServiceControllerNew">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.controller.flightInformationController">
    <children>
-      <ImageView fitHeight="71.0" fitWidth="68.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="147.0" fitWidth="251.0" layoutX="59.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@FlightInfoLogo.jpg" />
          </image>
       </ImageView>
-      <TableView layoutX="7.0" layoutY="74.0" prefHeight="200.0" prefWidth="244.0">
-        <columns>
-          <TableColumn prefWidth="124.0" text="Departure Airport" />
-          <TableColumn prefWidth="118.66665649414062" text="Destination airport" />
-        </columns>
-      </TableView>
-      <TableView layoutX="247.0" layoutY="74.0" prefHeight="200.0" prefWidth="191.0">
-        <columns>
-          <TableColumn prefWidth="102.666748046875" text="Departure Time " />
-          <TableColumn prefWidth="96.0" text="Arrival Time " />
-        </columns>
-      </TableView>
       <Label text="Label" />
       <Label layoutX="144.0" layoutY="13.0" text="Flight Information" textFill="#c5b1b1">
          <font>
             <Font name="Georgia Pro Light" size="37.0" />
          </font>
       </Label>
-      <TableView layoutX="436.0" layoutY="74.0" prefHeight="200.0" prefWidth="165.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="airline" />
-          <TableColumn prefWidth="75.0" text="Flight Nr" />
-        </columns>
-      </TableView>
+      <TextArea fx:id="departureBox" layoutX="28.0" layoutY="175.0" prefHeight="68.0" prefWidth="209.0">
+         <font>
+            <Font name="Corbel Bold" size="20.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="landingBox" layoutX="351.0" layoutY="175.0" prefHeight="68.0" prefWidth="209.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="27.0" layoutY="139.0" text="Departure Airport" textFill="#9a8787">
+         <font>
+            <Font name="Copperplate Gothic Light" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="139.0" text="Landing Airport" textFill="#9a8787">
+         <font>
+            <Font name="Copperplate Gothic Light" size="23.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="142.0" fitWidth="132.0" layoutX="390.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@arrivalPic.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
