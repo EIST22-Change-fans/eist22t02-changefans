@@ -59,22 +59,32 @@ public class FeedbackScene extends Scene {
         var id = new Text("FlightID: "+ feedback.getFlightID());
         id.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
 
+        var flightScore = new Text("FlightScore: "+ feedback.getFlightScore());
+        flightScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var cateringScore = new Text("CateringScore: "+ feedback.getCateringScore());
+        cateringScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var entertainmentScore = new Text("EntertainmentScore: "+ feedback.getEntertainmentScore());
+        entertainmentScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var serviceScore = new Text("ServiceScore: "+ feedback.getServiceScore());
+        serviceScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var comfortScore = new Text("comfortScore: "+ feedback.getComfortScore());
+        comfortScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var comment = new Text("comment: "+ feedback.getComment());
+        comment.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
         var spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
 
-        var deleteButton = new Button("Show feedback");
-        deleteButton.setTextFill(Color.ORANGE);
-        deleteButton.setOnAction(event -> {
-            try {
-                showPopup();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
 
 
-        var titleBox = new HBox(id, spacer,deleteButton);
+
+        var titleBox = new VBox(id, spacer,flightScore,cateringScore,entertainmentScore, serviceScore,comfortScore);
 
 
         var vBox = new VBox(10, titleBox);
@@ -109,18 +119,18 @@ public class FeedbackScene extends Scene {
 
     private void showPopup() throws IOException {
         popup = new Popup();
-        Feedback feedback=new Feedback();
+        //Feedback feedback=new Feedback();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FeedbackViewNew.fxml"));
         popup.getContent().add((Parent)loader.load());
-        ((FeedbackControllerNew)loader.getController()).setFeedbackController(feedbackController);
-        ((FeedbackControllerNew)loader.getController()).setFeedback(feedback);
+        ((FeedbackControllerNew)loader.getController()).setFeedback();
         ((FeedbackControllerNew)loader.getController()).setFeedbackScene(this);
 
         popup.show(clientApplication.getStage());
         popup.centerOnScreen();
     }
 
-    public void hidePopup(){
+    public void hidePopup(Feedback feedback){
+        feedbackController.addFeedback(feedback, this::setFeedbacks);
         popup.hide();
     }
 

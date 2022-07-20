@@ -7,9 +7,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.util.UUID;
+
 public class FeedbackControllerNew {
     private Feedback feedback;
-    private FeedbackController feedbackController;
     private FeedbackScene feedbackScene;
 
     public FeedbackScene getFeedbackScene() {
@@ -20,20 +21,13 @@ public class FeedbackControllerNew {
         this.feedbackScene = feedbackScene;
     }
 
-    public FeedbackController getFeedbackController() {
-        return feedbackController;
-    }
-
-    public void setFeedbackController(FeedbackController feedbackController) {
-        this.feedbackController = feedbackController;
-    }
 
     public Feedback getFeedback() {
         return feedback;
     }
 
-    public void setFeedback(Feedback feedback) {
-        this.feedback = feedback;
+    public void setFeedback() {
+        this.feedback =new Feedback();
     }
 
     @FXML
@@ -97,10 +91,9 @@ public class FeedbackControllerNew {
 
     @FXML
     void handleSubmitClicked(MouseEvent event) {
-        feedbackController.addFeedback(feedback, feedbackScene::setFeedbacks);
         feedback.reward();
         feedbackScene.showPopup2(feedback);
-        feedbackScene.hidePopup();
+        feedbackScene.hidePopup(feedback);
 
     }
 
@@ -174,6 +167,7 @@ public class FeedbackControllerNew {
 
     @FXML
     void handleFlightIDClicked(MouseEvent event) {
+        feedback.setFlightID(textAreaFlightID.getText());
 
     }
 

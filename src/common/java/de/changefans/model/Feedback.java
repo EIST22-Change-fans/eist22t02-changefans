@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.UUID;
 
 public class Feedback {
-    private UUID flightID;
+    private String flightID;
     private int flightScore;
     private int cateringScore;
     private int entertainmentScore;
@@ -33,11 +33,11 @@ public class Feedback {
     public Feedback() {
     }
 
-    public UUID getFlightID() {
+    public String getFlightID() {
         return flightID;
     }
 
-    public void setFlightID(UUID flightID) {
+    public void setFlightID(String flightID) {
         this.flightID = flightID;
     }
 
