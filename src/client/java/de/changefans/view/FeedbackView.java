@@ -1,15 +1,12 @@
-package de.changefans.controller;
+package de.changefans.view;
 
 import de.changefans.model.Feedback;
-import de.changefans.view.FeedbackScene;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.util.UUID;
-
-public class FeedbackControllerNew {
+public class FeedbackView {
     private Feedback feedback;
     private FeedbackScene feedbackScene;
 

@@ -3,6 +3,8 @@ package de.changefans;
 import de.changefans.controller.*;
 import de.changefans.view.FeedbackScene;
 import de.changefans.view.SafetyInstructionsScene;
+import de.changefans.view.flightInformationView;
+import de.changefans.view.requestServiceView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -38,14 +40,14 @@ public class ClientApplication extends Application {
     private void setReqser() throws IOException {
          FXMLLoader serloader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("RequestService.fxml")));
          Pane pp=serloader.load();
-        ((requestServiceControllerNew)serloader.getController()).setClientApplication(this);
+        ((requestServiceView)serloader.getController()).setClientApplication(this);
         reqSer=new Scene(pp);
     }
 
     private void setFlightinfo() throws IOException {
         FXMLLoader infoloader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("flightInformation.fxml")));
         Pane pp=infoloader.load();
-        ((flightInformationController)infoloader.getController()).setClientApplication(this);
+        ((flightInformationView)infoloader.getController()).setClientApplication(this);
         flightInfo=new Scene(pp);
     }
 

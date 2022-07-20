@@ -1,13 +1,12 @@
-package de.changefans.controller;
+package de.changefans.view;
 
 import de.changefans.ClientApplication;
-import de.changefans.model.Feedback;
+import de.changefans.controller.RequestServiceController;
 import de.changefans.model.RequestService;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -15,9 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
-import java.io.FileNotFoundException;
-
-public class requestServiceControllerNew {
+public class requestServiceView {
     RequestServiceController requestServiceController=new RequestServiceController();
     RequestService service=new RequestService();
     private ClientApplication clientApplication;

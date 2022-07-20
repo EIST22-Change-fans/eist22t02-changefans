@@ -2,7 +2,6 @@ package de.changefans.view;
 
 import de.changefans.ClientApplication;
 import de.changefans.controller.FeedbackController;
-import de.changefans.controller.FeedbackControllerNew;
 import de.changefans.model.Feedback;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,11 +18,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Random;
 
 public class FeedbackScene extends Scene {
     private final FeedbackController feedbackController;
@@ -122,8 +116,8 @@ public class FeedbackScene extends Scene {
         //Feedback feedback=new Feedback();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FeedbackViewNew.fxml"));
         popup.getContent().add((Parent)loader.load());
-        ((FeedbackControllerNew)loader.getController()).setFeedback();
-        ((FeedbackControllerNew)loader.getController()).setFeedbackScene(this);
+        ((FeedbackView)loader.getController()).setFeedback();
+        ((FeedbackView)loader.getController()).setFeedbackScene(this);
 
         popup.show(clientApplication.getStage());
         popup.centerOnScreen();

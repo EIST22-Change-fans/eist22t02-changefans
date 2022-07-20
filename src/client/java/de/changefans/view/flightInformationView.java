@@ -1,10 +1,10 @@
-package de.changefans.controller;
+package de.changefans.view;
 
 import de.changefans.ClientApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
-public class flightInformationController {
+public class flightInformationView {
     private ClientApplication clientApplication;
 
     public ClientApplication getClientApplication() {
