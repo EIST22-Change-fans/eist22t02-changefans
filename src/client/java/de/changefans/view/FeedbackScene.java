@@ -4,13 +4,13 @@ import de.changefans.ClientApplication;
 import de.changefans.controller.FeedbackController;
 import de.changefans.model.Feedback;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -18,15 +18,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 public class FeedbackScene extends Scene {
     private final FeedbackController feedbackController;
     private final ClientApplication clientApplication;
     private final FlowPane flowPane;
+    Popup popup;
 
     public FeedbackScene(FeedbackController feedbackController, ClientApplication clientApplication) {
         super(new VBox(), 640, 500);
@@ -54,16 +53,32 @@ public class FeedbackScene extends Scene {
         var id = new Text("FlightID: "+ feedback.getFlightID());
         id.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
 
+        var flightScore = new Text("FlightScore: "+ feedback.getFlightScore());
+        flightScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var cateringScore = new Text("CateringScore: "+ feedback.getCateringScore());
+        cateringScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var entertainmentScore = new Text("EntertainmentScore: "+ feedback.getEntertainmentScore());
+        entertainmentScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var serviceScore = new Text("ServiceScore: "+ feedback.getServiceScore());
+        serviceScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var comfortScore = new Text("comfortScore: "+ feedback.getComfortScore());
+        comfortScore.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
+        var comment = new Text("comment: "+ feedback.getComment());
+        comment.setFont(Font.font(Font.getDefault().getFamily(), FontWeight.EXTRA_BOLD, 20));
+
         var spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
 
-        var deleteButton = new Button("Show feedback");
-        deleteButton.setTextFill(Color.ORANGE);
-        deleteButton.setOnAction(event -> showPopup(feedback));
 
 
-        var titleBox = new HBox(id, spacer,deleteButton);
+
+        var titleBox = new VBox(id, spacer,flightScore,cateringScore,entertainmentScore, serviceScore,comfortScore);
 
 
         var vBox = new VBox(10, titleBox);
@@ -79,7 +94,13 @@ public class FeedbackScene extends Scene {
         backButton.setOnAction(event -> clientApplication.showHomeScene());
 
         var addButton = new Button("Add Feedback");
-        addButton.setOnAction(event -> showPopup(null));
+        addButton.setOnAction(event -> {
+            try {
+                showPopup();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         var refreshButton = new Button("Refresh");
         refreshButton.setOnAction(event -> feedbackController.getAllFeedbacks(this::setFeedbacks));
@@ -90,81 +111,24 @@ public class FeedbackScene extends Scene {
         return buttonBox;
     }
 
-    private void showPopup(Feedback feedback) {
-        boolean commented = false;
-        var popup = new Popup();
-        Label fid = new Label("Enter flightID");
-        Label cat = new Label("Rate catering");
-        Label enter = new Label("Rate entertainment");
-        Label ser = new Label("Rate service");
-        Label comf = new Label("Rate comfort");
-        Label comm= new Label("Add Comment");
+    private void showPopup() throws IOException {
+        popup = new Popup();
+        //Feedback feedback=new Feedback();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FeedbackViewNew.fxml"));
+        popup.getContent().add((Parent)loader.load());
+        ((FeedbackView)loader.getController()).setFeedback();
+        ((FeedbackView)loader.getController()).setFeedbackScene(this);
 
-        var idTextField = new TextField();
-        idTextField.setPromptText("Enter flightID");
-        idTextField.setText(feedback == null ? "" : String.valueOf(feedback.getFlightID()));
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var cateringTextField = new Spinner<>(spinnerValueFactory1);
-        cateringTextField.setPromptText("Rate catering");
-        cateringTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getCateringScore());
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var entertainmentTextField = new Spinner<>(spinnerValueFactory2);
-        entertainmentTextField.setPromptText("Rate entertainment");
-        entertainmentTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getEntertainmentScore());
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var serviceTextField = new Spinner<>(spinnerValueFactory3);
-        serviceTextField.setPromptText("Rate service");
-        serviceTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getServiceScore());
-
-        SpinnerValueFactory.IntegerSpinnerValueFactory spinnerValueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 3);
-        var comfortTextField = new Spinner<>(spinnerValueFactory4);
-        comfortTextField.setPromptText("Rate comfort");
-        comfortTextField.getValueFactory().setValue(feedback == null ? 3 : feedback.getComfortScore());
-
-        var commentTextArea = new TextArea();
-        commentTextArea.setPromptText("Comment");
-        commentTextArea.setText(feedback == null ? "" : feedback.getComment());
-
-        var addButton = new Button("Save");
-        addButton.setOnAction(event -> {
-            var newFeedback = feedback != null ? feedback : new Feedback();
-            newFeedback.setFlightID(Integer.parseInt(idTextField.getText()));
-            newFeedback.setCateringScore(cateringTextField.getValue());
-            newFeedback.setComfortScore(comfortTextField.getValue());
-            newFeedback.setEntertainmentScore(entertainmentTextField.getValue());
-            newFeedback.setServiceScore(serviceTextField.getValue());
-            newFeedback.setComment(commentTextArea.getText());
-            if (feedback == null) {
-                feedbackController.addFeedback(newFeedback, this::setFeedbacks);
-            }
-            newFeedback.reward();
-            showPopup2(newFeedback);
-            popup.hide();
-        });
-
-        var cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(event -> popup.hide());
-
-
-        var hBox = new HBox(10, addButton, cancelButton);
-        hBox.setAlignment(Pos.CENTER);
-
-        var vBox = new VBox(10,fid, idTextField,ser,serviceTextField,cat,cateringTextField,comf,comfortTextField,enter,entertainmentTextField,comm,commentTextArea, hBox);
-        vBox.setAlignment(Pos.TOP_CENTER);
-        vBox.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-        vBox.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1))));
-        vBox.setPrefWidth(200);
-        vBox.setPrefHeight(200);
-        vBox.setPadding(new Insets(5));
-        popup.getContent().add(vBox);
         popup.show(clientApplication.getStage());
         popup.centerOnScreen();
     }
 
-    private void showPopup2(Feedback feedback){
+    public void hidePopup(Feedback feedback){
+        feedbackController.addFeedback(feedback, this::setFeedbacks);
+        popup.hide();
+    }
+
+    public void showPopup2(Feedback feedback){
         var popup = new Popup();
 
 

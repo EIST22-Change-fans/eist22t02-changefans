@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="426.0" prefWidth="655.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.changefans.controller.MainPageController">
+   <children>
+      <VBox prefHeight="445.0" prefWidth="219.0" style="-fx-background-color: #3F2863;">
+         <children>
+            <Button fx:id="SafetyInstrucionPart" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#SafetyInstrucionPartClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Safety Instructions" textFill="#d4b4b4">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="FlightInformation" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#FlightInformationClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Flight Information" textFill="#d4b4b4">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="RequestService" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#RequestServiceClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Request Service" textFill="#d4b4b4">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="MainPage" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#FeedbackClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Add Feedback" textFill="#d4b4b4">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="MainPage1" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#FeedbackClicked" prefHeight="47.0" prefWidth="226.0" style="-fx-background-color: #3F2863;" text="Q&amp;A" textFill="#d4b4b4">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Cambria" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Label layoutX="257.0" layoutY="14.0" prefHeight="70.0" prefWidth="355.0" text="Change For Fans " textFill="#703cae">
+         <font>
+            <Font name="Forte" size="45.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="314.0" fitWidth="458.0" layoutX="225.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+
+      </ImageView>
+   </children>
+</AnchorPane>
