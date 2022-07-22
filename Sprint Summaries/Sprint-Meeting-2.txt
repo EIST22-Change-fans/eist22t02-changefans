@@ -1,0 +1,14 @@
+Sprint Planning Meeting 2
+Date: 13/06/2022
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen.
+
+Meeting goals:
+1.	Reviewing the models and handling some small issues.
+2.	Discussing how we should start implementing the FRs.
+3.  Choosing two FRs to work on.
+4.	Fixing a deadline, by which the tasks should be done in order to connect them and review them.
+
+The tasks were divided as following:
+-	Amine works on the gui for the main page.
+-	Eslam, Yosr, and Rayen work on the implementation of the feedback class, and feedbackResource.
+-	Mehdi works on the implementation SafetyInstruction.
