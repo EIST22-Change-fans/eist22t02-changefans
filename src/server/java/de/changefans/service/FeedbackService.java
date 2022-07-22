@@ -14,7 +14,7 @@ public class FeedbackService {
     }
 
     /**
-     * saves feedback to the feeback list
+     * saves feedback to the feedback list
      * returns feedback
      */
     public Feedback saveFeedback(Feedback feedback) {

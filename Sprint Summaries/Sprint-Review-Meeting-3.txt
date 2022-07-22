@@ -1,0 +1,7 @@
+Sprint Review Meeting 3
+Date: 24/06/2022
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen, Aamin
+
+Good progress till now
+Keep implementing FRs till the end
+Presentation on 28/07 14:00-15:00 or 15:00-16:00 in Garchingng enough. The sooner the better (apart from the case we already discussed in the review meeting)

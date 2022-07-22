@@ -1,0 +1,8 @@
+Sprint Review Meeting 4
+Date: 08/07/2022
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen, Aamin
+
+Implementation is going good, keep it up
+Don't forget the documentation
+Don't forget writing tests
+Complete the connection between client and server side using REST

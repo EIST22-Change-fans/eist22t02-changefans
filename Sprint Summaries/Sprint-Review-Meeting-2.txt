@@ -1,0 +1,13 @@
+Sprint Review Meeting 2
+Date: 10/06/2022
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen, Aamin
+
+Work is going good
+Text me if any of your teammate isn't contributing enough (DM ofc), the situation will be handled anonymously.
+Keep implementing the functional requirements at your own pace, and let me know if you have any difficulties
+
+TODOs for the next sprint
+
+Keep implementing FRs at your own pace so you are done on time
+Text me in case of any impediments
+Text me if your teammate isn't contributing enough. The sooner the better (apart from the case we already discussed in the review meeting)

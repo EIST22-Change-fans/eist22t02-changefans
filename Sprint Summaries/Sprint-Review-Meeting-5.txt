@@ -1,0 +1,8 @@
+Sprint Review Meeting 5
+Date: 22/07/2022
+Participants: Mehdi, Eslam, Yosr, Rayen, Aamin (Amine was absent due to a hospital stay)
+
+Java docs HTML style
+RAD and SDD files
+Get the application working
+If you show any CoViD symptomps, we will do the presentation online
