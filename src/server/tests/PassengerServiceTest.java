@@ -1,7 +1,8 @@
-package de.changefans.tests;
+
 import de.changefans.model.Passenger;
 import de.changefans.service.PassengerService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import java.util.Optional;
 import java.util.UUID;
@@ -10,9 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class PassengerServiceTest {
-    @Test public void testSavePassenger() {
+    @Test
+    public void testSavePassenger() {
         PassengerService passengerService = new PassengerService();
-        Passenger rayen = new Passenger("Rayen", "Mhadhbi", new UUID(11,111));
+        Passenger rayen = new Passenger("Rayen", "Mhadhbi", new UUID(11, 111));
         assertEquals(rayen, passengerService.savePassenger(rayen));
 
     }
@@ -20,7 +22,7 @@ public class PassengerServiceTest {
     @Test
     public void testGetPassenger() {
         PassengerService passengerService = new PassengerService();
-        Passenger yosr = new Passenger("Yosr", "Labidi", new UUID(11,2323));
+        Passenger yosr = new Passenger("Yosr", "Labidi", new UUID(11, 2323));
         assertEquals(Optional.empty(), passengerService.getPassenger(new UUID(11,2323)));
         passengerService.savePassenger(yosr);
         assertEquals(yosr, passengerService.getPassenger(yosr.getId()).get());

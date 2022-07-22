@@ -1,7 +1,7 @@
-package de.changefans.tests;
+
 import de.changefans.model.POI;
 import de.changefans.service.POIService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;

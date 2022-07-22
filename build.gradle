@@ -20,6 +20,7 @@ configurations {
     commonImplementation.extendsFrom(implementation)
     serverImplementation.extendsFrom(implementation)
     clientImplementation.extendsFrom(implementation)
+    testImplementation.extendsFrom(implementation)
 
 }
 
@@ -28,6 +29,9 @@ dependencies {
     serverImplementation 'org.springframework.boot:spring-boot-starter-webflux'
     clientImplementation 'org.springframework.boot:spring-boot-starter-webflux'
     commonImplementation 'org.openjfx:javafx-base'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+
 
 }
 
@@ -62,6 +66,22 @@ sourceSets {
         compileClasspath += common.output
         runtimeClasspath += common.output
     }
+    test {
+        java {
+            srcDir 'src/server/tests'
+        }
+        resources {
+            'src/test/resources'
+        }
+        compileClasspath += server.output
+        runtimeClasspath += server.output
+        compileClasspath += common.output
+        runtimeClasspath += common.output
+        compileClasspath += client.output
+        runtimeClasspath += client.output
+
+    }
+
 }
 
 processResources {

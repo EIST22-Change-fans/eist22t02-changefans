@@ -1,13 +1,7 @@
-package de.changefans.tests;
 import de.changefans.model.Feedback;
-import de.changefans.model.Flight;
 import de.changefans.service.FeedbackService;
-import de.changefans.service.FlightService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
