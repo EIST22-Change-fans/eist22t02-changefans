@@ -9,12 +9,17 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class POIService {
     private final String POI_API_KEY = "108d776c4cbf492d8d8a54798fdd4b6d";
-
+    /**
+     * This method takes in a longitude and a latitude as doubles
+     * It sends HTTP Get request based on these parameters to an external API and parses
+     * the json response into the needed attributes to create a POI Class. It then adds each
+     * created POI to a POI list until there are no more POIs to add and returns the
+     * POI list.
+     */
     public List<POI> getPOI(double longitude, double latitude) throws IOException {
         final String uri =
                 "https://api.geoapify.com/v2/places?categories=tourism.sights,entertainment.culture&bias=proximity:" + Double.toString(longitude) + ","
@@ -50,10 +55,5 @@ public class POIService {
         }
         return new ArrayList<>();
     }
-    public static void main(String[] args) throws IOException {
-        POIService poiService = new POIService();
-         List<POI> poi = poiService.getPOI(2.3522219,48.856614);
-        System.out.println((poi == null) ? null : Arrays.toString(poi.toArray()));
 
-    }
 }

@@ -26,6 +26,6 @@ public class TripResource {
     @GetMapping("passengers/{passengerId}/trips/{tripId}")
     public ResponseEntity<Passenger> getTrip(@PathVariable("passengerId") UUID passengerId,
                                              @PathVariable("tripId") UUID tripId) {
-        return null; //TODO
+        return null;
     }
 }

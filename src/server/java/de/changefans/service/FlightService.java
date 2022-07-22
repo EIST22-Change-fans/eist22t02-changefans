@@ -16,10 +16,18 @@ import java.util.*;
 
 
 @Service
+
 public class FlightService {
 
     private final String FlIGHT_API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMjAwNmY3YWM2ODkyMGY5NmNmOGIxMzI0NmM5Mjg1ZTg1MDNhOGNkYzAzZmI1NzA4M2I5YWMxODYzYWMyNjE3MWY1NGE2MTNlNDI5YjhjODEiLCJpYXQiOjE2NTU5MzU1MTcsIm5iZiI6MTY1NTkzNTUxNywiZXhwIjoxNjg3NDcxNTE3LCJzdWIiOiI2ODc0Iiwic2NvcGVzIjpbXX0.KSE_CrVi-H5dT8uoRs85L8Iyt2BcPXtQPBIX7yWe829fQipEwk81PFED_Wa651P5vlKrOqCfYJsE4RhizDympA";
 
+    /**
+     * This method takes in a date, a departure place and arrival place coded as icao
+     * It sends HTTP Get request based on these parameters to an external API and parses
+     * the json response into the needed attributes to create a Flight Class. It then adds each
+     * created flight to a flight list until there are no more flights to add and returns the
+     * flight list.
+     */
     public List<Flight> getFlights(Date date, String departureICAO, String arrivalICAO) {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -62,8 +70,8 @@ public class FlightService {
             departurePlace.setLongitude(departureJSON.getDouble("longitude"));
 
             JSONObject arrivalJSON = new JSONObject(arrivalResult);
-            departurePlace.setLatitude(arrivalJSON.getDouble("latitude"));
-            departurePlace.setLongitude(arrivalJSON.getDouble("longitude"));
+            arrivalPlace.setLatitude(arrivalJSON.getDouble("latitude"));
+            arrivalPlace.setLongitude(arrivalJSON.getDouble("longitude"));
 
             String gate = dep.getString("gate");
             int terminal = dep.getInt("terminal");
@@ -87,12 +95,6 @@ public class FlightService {
     }
 
 
-    //TODO use for testing
-    public static void main(String[] args) throws ParseException {
-        FlightService flightService = new FlightService();
-        List<Flight> flights = flightService.getFlights(new SimpleDateFormat("yyyy-MM-dd").parse("2022-06-4"), "EDDF", "LFPG");
-        System.out.println((flights == null) ? null : Arrays.toString(flights.toArray()));
-    }
 }
 
 

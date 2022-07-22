@@ -13,9 +13,10 @@ public class Passenger {
     private List<POI> favoritePOIs;
     private List<Trip> trips;
 
-    public Passenger(String name, String surname) {
+    public Passenger(String name, String surname, UUID uuid) {
         this.name = name;
         this.surname = surname;
+        this.id = uuid;
     }
 
     public void notifyPassenger() {
