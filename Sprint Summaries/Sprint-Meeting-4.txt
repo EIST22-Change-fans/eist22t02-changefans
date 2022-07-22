@@ -1,0 +1,14 @@
+Sprint Planning Meeting 3
+Date: 08/07/2022
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen.
+
+Meeting goals:
+1.	Reviewing the implementation of the AddFlight, and RequestService FRs.
+2.  reviewing the implementation the gui .
+3.  continue finishing the FRs.
+4.	Fixing a deadline, by which the tasks should be done in order to connect them and review them.
+
+The tasks were divided as following:
+-	Amine works on the gui for the addFlight view.
+-	Mehdi, Yosr, and Rayen continue implementing the POI and trip classes .
+-	Eslam works on connecting the gui with the server.

@@ -1,0 +1,14 @@
+Sprint Planning Meeting 3
+Date: 24/06/2022
+Everyone was present: Mehdi, Amine, Eslam, Yosr, Rayen.
+
+Meeting goals:
+1.	Reviewing the implementation of the Feedback, and SafetyInstruction FRs.
+2.  reviewing the gui of the mainPage.
+3.  Choosing another two FRs to work on: AddFlight, and RequestService .
+4.	Fixing a deadline, by which the tasks should be done in order to connect them and review them.
+
+The tasks were divided as following:
+-	Amine works on the gui for the Feedback,and RequestService.
+-	Mehdi, Yosr, and Rayen work on the implementation of Flight class.
+-	Eslam works on the implementation of RequestService class.
